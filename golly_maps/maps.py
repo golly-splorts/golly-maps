@@ -1128,13 +1128,11 @@ def twomultum_twocolor(rows, cols, seed=None):
     mindim = min(rows, cols)
     if mindim < 200:
         L = 15
-        multum_x_loc = [cols // 2]
-        multum_y_loc = [rows // 2 - L, rows // 2 + L]
-
     else:
         L = 25
-        multum_x_loc = [cols // 2 - L, cols // 2 + L]
-        multum_y_loc = [rows // 2 - L, rows // 2 + L]
+
+    multum_x_loc = [cols // 2 - L, cols // 2 + L]
+    multum_y_loc = [rows // 2 - L, rows // 2 + L]
 
     npoints = len(multum_x_loc) * len(multum_y_loc)
     team_assignments = [
