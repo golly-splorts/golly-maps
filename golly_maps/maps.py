@@ -796,11 +796,11 @@ def _timebomb_oscillators_twocolor(rows, cols, revenge, seed=None):
 
         # Timebomb location
         timebomb_x = [centerx]
-        timebomb_y = [centery + lengthscale//2]
+        timebomb_y = [centery + lengthscale // 2]
 
         # Oscillator locations
         osc_x = [centerx - lengthscale, centerx, centerx + lengthscale]
-        osc_y = [centery - lengthscale//2]*3
+        osc_y = [centery - lengthscale // 2] * 3
 
     else:
         # Six oscillators versus two timebombs
@@ -834,10 +834,10 @@ def _timebomb_oscillators_twocolor(rows, cols, revenge, seed=None):
     osc_jitter_y = lengthscale // 4
     timebomb_jitter_x = lengthscale // 2
     timebomb_jitter_y = lengthscale // 8
-    #osc_jitter_x = 0
-    #osc_jitter_y = 0
-    #timebomb_jitter_x = 0
-    #timebomb_jitter_y = 0
+    # osc_jitter_x = 0
+    # osc_jitter_y = 0
+    # timebomb_jitter_x = 0
+    # timebomb_jitter_y = 0
 
     # Decide whether this is an even matchup (each team has 1 timebomb and 3 oscillators)
     # or a lopsided matchup (one team has both timebombs)
@@ -859,13 +859,15 @@ def _timebomb_oscillators_twocolor(rows, cols, revenge, seed=None):
     team2_patterns = []
 
     # Assemble the oscillator patterns
-    for k, (oscxx, oscyy, team_ass, parity) in enumerate(zip(osc_x, osc_y, osc_team_ass, oscparity)):
+    for k, (oscxx, oscyy, team_ass, parity) in enumerate(
+        zip(osc_x, osc_y, osc_team_ass, oscparity)
+    ):
         pattern = get_grid_pattern(
             _get_oscillator_name(),
             rows,
             cols,
             xoffset=oscxx + random.randint(-osc_jitter_x, osc_jitter_x),
-            yoffset=oscyy + parity*random.randint(0, osc_jitter_y),
+            yoffset=oscyy + parity * random.randint(0, osc_jitter_y),
         )
         if team_ass == 1:
             team1_patterns.append(pattern)
@@ -881,9 +883,9 @@ def _timebomb_oscillators_twocolor(rows, cols, revenge, seed=None):
 
         rotdeg = 0
         if do_rotate:
-            if k==0:
+            if k == 0:
                 rotdeg = 90
-            elif k==1:
+            elif k == 1:
                 rotdeg = 270
 
         # We have to rotate first, then hflip, so don't provide hflip argument here
@@ -892,8 +894,8 @@ def _timebomb_oscillators_twocolor(rows, cols, revenge, seed=None):
             rows,
             cols,
             xoffset=timebombxx + random.randint(-timebomb_jitter_x, timebomb_jitter_x),
-            yoffset=timebombyy + parity*random.randint(0, timebomb_jitter_y),
-            rotdeg=rotdeg
+            yoffset=timebombyy + parity * random.randint(0, timebomb_jitter_y),
+            rotdeg=rotdeg,
         )
 
         if do_hflip:
