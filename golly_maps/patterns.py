@@ -312,7 +312,7 @@ def segment_pattern(
 
             magh = math.floor(0.5 * (1 - gap_probability) * mag)
             rem = mag - (2*magh)
-            
+
             team_assignments = (
                 [
                     1,
@@ -436,13 +436,13 @@ def metheusela_quadrants_pattern(
 
             # Only one metheusela in this quadrant, so use the center
 
-            jitterx = 20
+            jitterx = 15
             jittery = 15
 
             for bi in buddy_index:
                 corner = quadrants[bi][1]
 
-                y = corner[0] + rows // 4 + random.randint(-jittery, jittery)
+                y = corner[0] + rows // 4  +random.randint(-jittery, jittery)
                 x = corner[1] + cols // 4 + random.randint(-jitterx, jitterx)
 
                 if fixed_metheusela:
@@ -468,8 +468,12 @@ def metheusela_quadrants_pattern(
             # Two or four metheuselas in this quadrant, so place at corners of a square
             # Form the square by cutting the quadrant into thirds
 
-            jitterx = 12
-            jittery = 8
+            if count == 4:
+                jitterx = 2
+                jittery = 2
+            else:
+                jitterx = 5
+                jittery = 5
 
             for bi in buddy_index:
                 corner = quadrants[bi][1]
@@ -493,8 +497,8 @@ def metheusela_quadrants_pattern(
                             proceed = True
 
                         if proceed:
-                            y = corner[0] + a * ((rows // 2) // nparts)
-                            x = corner[1] + b * ((cols // 2) // nparts)
+                            y = corner[0] + a * ((rows // 2) // nparts) + random.randint(-jittery, jittery)
+                            x = corner[1] + b * ((cols // 2) // nparts) + random.randint(-jitterx, jitterx)
 
                             if fixed_metheusela:
                                 meth = fixed_metheusela
@@ -523,6 +527,12 @@ def metheusela_quadrants_pattern(
 
             # Three or nine metheuselas, place these on a square with three points per side
             # or eight points total
+            if count == 9:
+                jitterx = 2
+                jittery = 2
+            else:
+                jitterx = 4
+                jittery = 4
 
             for bi in buddy_index:
                 corner = quadrants[bi][1]
@@ -540,8 +550,8 @@ def metheusela_quadrants_pattern(
                             proceed = True
 
                         if proceed:
-                            y = corner[0] + a * ((rows // 2) // nslices)
-                            x = corner[1] + b * ((cols // 2) // nslices)
+                            y = corner[0] + a * ((rows // 2) // nslices) + random.randint(-jittery, jittery)
+                            x = corner[1] + b * ((cols // 2) // nslices) + random.randint(-jitterx, jitterx)
 
                             if fixed_metheusela:
                                 meth = fixed_metheusela
@@ -571,6 +581,8 @@ def metheusela_quadrants_pattern(
         elif count == 16:
 
             # Sixteen metheuselas, place these on a 4x4 square
+            jitterx = 1
+            jittery = 1
 
             for bi in buddy_index:
                 corner = quadrants[bi][1]
@@ -580,8 +592,8 @@ def metheusela_quadrants_pattern(
                 for a in range(1, nslices):
                     for b in range(1, nslices):
 
-                        y = corner[0] + a * ((rows // 2) // nslices)
-                        x = corner[1] + b * ((cols // 2) // nslices)
+                        y = corner[0] + a * ((rows // 2) // nslices) + random.randint(-jittery, jittery)
+                        x = corner[1] + b * ((cols // 2) // nslices) + random.randint(-jitterx, jitterx)
 
                         if fixed_metheusela:
                             meth = fixed_metheusela
