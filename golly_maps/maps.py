@@ -76,8 +76,6 @@ def get_map_realization(patternname, rows=100, columns=120):
         "cellSize:" k
     }
     """
-    if rows < 100 or columns < 120:
-        raise GollyMapsError(f"Error: you must have at least 100 rows and 120 columns")
     # Get map data (pattern, name, zone names)
     mapdat = get_map_metadata(patternname)
 
